@@ -11,10 +11,12 @@
 void rankMenu(void) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // This draws the gray border around the screen
 
     gfx_ScaledSprite_NoClip(ranking, 16, 24, 3, 3);
     
+    // This is all just stuff for the displaying of High Scores
+
     gfx_SetTextScale(3, 3);
     gfx_SetTextXY(56, 70);
     gfx_PrintInt(highScores[0], 1);
@@ -35,6 +37,8 @@ void rankMenu(void) {
     gfx_BlitBuffer();
     gfx_SetDrawScreen();
 
+    // The loop detects whether the menu should either change or close
+
     while (!kb_IsDown(kb_KeyClear) && !kb_IsDown(kb_KeyAlpha) && !kb_IsDown(kb_KeyRight)) {
         kb_Scan();
     }
@@ -43,9 +47,11 @@ void rankMenu(void) {
 void helpMenu(void) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // This draws the gray border like it does everywhere else
     
     gfx_ScaledSprite_NoClip(help, 16, 24, 3, 3);
+
+    // This stuff is the text on the help menu
 
     gfx_SetTextScale(2, 2);
 
@@ -60,6 +66,8 @@ void helpMenu(void) {
 
     gfx_BlitBuffer();
     gfx_SetDrawScreen();
+
+    // The loop detects whether the menu should change or close
 
     while (!kb_IsDown(kb_KeyClear) && !kb_IsDown(kb_KeyAlpha) && !kb_IsDown(kb_KeyLeft)) {
         kb_Scan();

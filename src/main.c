@@ -20,7 +20,7 @@ int16_t highScores[5] = {0, 0, 0, 0, 0};
 static void cursor(uint8_t y) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // Gray border
 
     gfx_ScaledSprite_NoClip(menu, 16, 24, 3, 3);
     gfx_ScaledTransparentSprite_NoClip(fork, 97, y, 3, 3);
@@ -40,6 +40,8 @@ static void game(void) {
 
     timer_Set(1, QRTR_SECOND);
     timer_SetReload(1, QRTR_SECOND);
+
+    // Draws the first frame of the game
 
     draw(0, yum, score, 5, 0, 0, 0);
 
@@ -66,6 +68,8 @@ static void game(void) {
             }
         }
 
+        // Arrow moving across the screen
+
         for (arrowX = 280; arrowX >= 16; arrowX -= 24) {
             kb_Scan();
             
@@ -85,6 +89,8 @@ static void game(void) {
         if (kb_IsDown(kb_KeyClear)) {
             break;
         }
+
+        // Scoring system
 
         if (food < 3) {
             if (kb_IsDown(kb_Key2nd)) {
@@ -107,6 +113,8 @@ static void game(void) {
 
 static void rank(void) {
     while (!kb_IsDown(kb_KeyClear) && !kb_IsDown(kb_KeyAlpha)) {
+        // This determines what menu you should be seeing
+        
         if (!kb_IsDown(kb_KeyRight)) {
             while (kb_AnyKey());
             rankMenu();
@@ -120,7 +128,7 @@ static void rank(void) {
 int main(void) {
     uint8_t cursorY = 124;
 
-    ti_var_t slot = ti_Open("SLXHIGH", "r");
+    ti_var_t slot = ti_Open("SLXHIGH", "r");    // App variable with the High Scores
 
     if (slot) {
         ti_Read(&highScores, 10, 1, slot);
@@ -139,6 +147,8 @@ int main(void) {
     gfx_SetTextFGColor(2);
     gfx_SetTransparentColor(1);
     cursor(cursorY);
+
+    // Main menu stuff, pretty self-explanatory
 
     while (!kb_IsDown(kb_KeyClear)) {
         kb_Scan();
@@ -160,6 +170,8 @@ int main(void) {
                 break;
         }
 
+        // The cursor has an animation as well, so this loop takes care of it
+
         if (timer_ChkInterrupt(1, TIMER_RELOADED)) {
             if (cursorY == 148 || cursorY == 124) {
                 cursorY -= 4;
@@ -168,6 +180,8 @@ int main(void) {
             }
             timer_AckInterrupt(1, TIMER_RELOADED);
         }
+
+        // Exiting the menu
 
         if (kb_IsDown(kb_Key2nd) || kb_IsDown(kb_KeyEnter)) {
             if (cursorY >= 144) {
@@ -181,6 +195,8 @@ int main(void) {
     }
 
     gfx_End();
+
+    // Writing the app variable and archiving it
 
     slot = ti_Open("SLXHIGH", "w+");
 

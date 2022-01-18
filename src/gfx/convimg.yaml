@@ -1,0 +1,39 @@
+palettes:
+  - name: global_palette
+    fixed-entries:
+      - color: {index: 0, r: 50, g: 50, b: 50}
+      - color: {index: 1, r: 255, g: 0, b: 128}
+      - color: {index: 2, r: 0, g: 0, b: 0}
+    images: automatic
+
+converts:
+  - name: sprites
+    palette: global_palette
+    transparent-color-index: 0
+    images:
+      - menu.png
+      - idle1.png
+      - idle2.png
+      - idle3.png
+      - great.png
+      - good.png
+      - ok.png
+      - gameOver.png
+      - newHighScore.png
+      - ranking.png
+      - help.png
+      - bread.png
+      - melon.png
+      - pineapple.png
+      - pichu1.png
+      - fork.png
+      - arrow.png
+
+
+outputs:
+  - type: c
+    include-file: gfx.h
+    palettes:
+      - global_palette
+    converts:
+      - sprites

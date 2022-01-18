@@ -28,7 +28,9 @@ static void newBest(int16_t score) {
 uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, int8_t y, int16_t x, int16_t arrowX) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // Gray border
+
+    // The animation of the background image
 
     if (!idleAnimation) {
         gfx_ScaledSprite_NoClip(idle1, 16, 24, 3, 3);
@@ -41,9 +43,13 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
         idleAnimation = 0;
     }
 
+    // Detects whether or not the arrow should be displayed and if so it displays it
+
     if (arrowX) {
         gfx_ScaledTransparentSprite_NoClip(arrow, arrowX, 189, 3, 3);
     }
+
+    // Draws whatever food should be drawn, otherwise draws nothing
 
     switch (food) {
         case 0:
@@ -62,8 +68,12 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
             break;
     }
 
+    // Covers up the top of the sprite if it goes on the border
+
     gfx_SetColor(0);
     gfx_FillRectangle_NoClip(95, 0, 148, 24);
+
+    // Draws the scores
 
     gfx_SetTextScale(2, 2);
 
@@ -76,13 +86,15 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
     gfx_BlitBuffer();
     gfx_SetDrawScreen();
 
-    return idleAnimation;
+    return idleAnimation;   // In some cases it is necessary to change the frame of the animation
 }
 
 int16_t eat(int16_t speed, int16_t score, int16_t yum) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // Gray border
+
+    // How fast you pressed "2nd"
 
     if (speed < 87) {
         gfx_ScaledSprite_NoClip(ok, 16, 24, 3, 3);
@@ -95,6 +107,8 @@ int16_t eat(int16_t speed, int16_t score, int16_t yum) {
         score += 5;
     }
 
+    // Displaying the score
+
     gfx_SetTextXY(25, 34);
     gfx_PrintInt(score, 3);
 
@@ -104,7 +118,7 @@ int16_t eat(int16_t speed, int16_t score, int16_t yum) {
     gfx_BlitBuffer();
     gfx_SetDrawScreen();
 
-    msleep(299);
+    msleep(299);    // There is a short pause for the eating frame
 
     return score;
 }
@@ -112,12 +126,14 @@ int16_t eat(int16_t speed, int16_t score, int16_t yum) {
 void youLose(int16_t score) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();
+    gfx_ZeroScreen();   // Gray border that is everywhere
 
     gfx_ScaledSprite_NoClip(gameOver, 16, 24, 3, 3);
 
     gfx_BlitBuffer();
     gfx_SetDrawScreen();
+
+    // I had to make sure the timer was all resolved because of some bugs
 
     if (timer_ChkInterrupt(1, TIMER_RELOADED)) {
         timer_AckInterrupt(1, TIMER_RELOADED);
@@ -125,16 +141,22 @@ void youLose(int16_t score) {
 
     timer_Disable(1);
 
+    // Modifies the timer
+
     timer_Set(1, ONE_SECOND);
     timer_SetReload(1, ONE_SECOND);
 
     timer_Enable(1, TIMER_32K, TIMER_0INT, TIMER_DOWN);
 
+    // Waits on the Game Over screen unless you press a button or a second has passed
+    
     while (!timer_ChkInterrupt(1, TIMER_RELOADED) && !kb_IsDown(kb_KeyClear)) {
         kb_Scan();
     }
 
     while (kb_AnyKey());
+
+    // I'm stupid so this is how I took care of bumping high scores down
 
     if (score > highScores[0]) {
         highScores[4] = highScores[3];
