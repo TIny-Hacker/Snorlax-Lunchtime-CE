@@ -53,16 +53,16 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
 
     switch (food) {
         case 0:
-            gfx_TransparentSprite(bread, x, y);
+            gfx_TransparentSprite(bread, x, y + 48);
             break;
         case 1:
-            gfx_TransparentSprite(pineapple, x, y);
+            gfx_TransparentSprite(pineapple, x + 18, y + 9);
             break;
         case 2:
-            gfx_TransparentSprite(melon, x, y);
+            gfx_TransparentSprite(melon, x + 9, y + 15);
             break;
         case 3:
-            gfx_TransparentSprite(pichu1, x, y);
+            gfx_TransparentSprite(pichu1, x + 21, y);
             break;
         default:
             break;

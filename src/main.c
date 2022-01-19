@@ -52,7 +52,7 @@ static void game(void) {
 
         uint8_t food = randInt(0, 3);
 
-        for (int8_t y = -80; y <= 40; y += 10) {              //Falling food loop
+        for (int8_t y = -60; y <= 60; y += 10) {              //Falling food loop
             kb_Scan();
 
             if (kb_IsDown(kb_KeyClear)) {
@@ -74,11 +74,11 @@ static void game(void) {
             kb_Scan();
             
             if (timer_ChkInterrupt(1, TIMER_RELOADED)) {
-                idleAnimation = draw(idleAnimation, yum, score, food, 40, 106, arrowX);
+                idleAnimation = draw(idleAnimation, yum, score, food, 60, 106, arrowX);
 
                 timer_AckInterrupt(1, TIMER_RELOADED);
             } else {
-                draw(idleAnimation, yum, score, food, 40, 106, arrowX);
+                draw(idleAnimation, yum, score, food, 60, 106, arrowX);
             }
 
             if (kb_IsDown(kb_Key2nd) || kb_IsDown(kb_KeyClear)) {
