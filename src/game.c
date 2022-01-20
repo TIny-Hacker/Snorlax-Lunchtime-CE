@@ -29,19 +29,27 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
     gfx_SetDrawBuffer();
 
     gfx_ZeroScreen();   // Gray border
+    gfx_SetColor(3);
+    gfx_FillRectangle_NoClip(16, 24, 288, 192); // Background
 
-    // The animation of the background image
+    // The animation of the snorlax
 
     if (!idleAnimation) {
-        gfx_ScaledSprite_NoClip(idle1, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(idle1, 52, 45, 3, 3);
         idleAnimation = 1;
     } else if (idleAnimation == 1) {
-        gfx_ScaledSprite_NoClip(idle2, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(idle2, 58, 45, 3, 3);
         idleAnimation = 2;
     } else {
-        gfx_ScaledSprite_NoClip(idle3, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(idle3, 61, 45, 3, 3);
         idleAnimation = 0;
     }
+
+    // HUD stuff
+
+    gfx_ScaledSprite_NoClip(topLeft, 16, 24, 3, 3);
+    gfx_ScaledSprite_NoClip(topRight, 226, 24, 3, 3);
+    gfx_ScaledSprite_NoClip(bottom, 16, 165, 3, 3);
 
     // Detects whether or not the arrow should be displayed and if so it displays it
 

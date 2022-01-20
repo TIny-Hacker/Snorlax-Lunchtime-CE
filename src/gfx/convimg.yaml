@@ -12,6 +12,9 @@ converts:
     transparent-color-index: 0
     images:
       - menu.png
+      - topLeft.png
+      - topRight.png
+      - bottom.png
       - idle1.png
       - idle2.png
       - idle3.png
