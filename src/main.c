@@ -191,7 +191,9 @@ int main(void) {
             }
         }
 
-        cursor(cursorY);
+        if (!kb_IsDown(kb_KeyClear)) {
+            cursor(cursorY);
+        }
     }
 
     gfx_End();
