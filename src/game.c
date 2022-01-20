@@ -100,22 +100,32 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
 int16_t eat(int16_t speed, int16_t score, int16_t yum) {
     gfx_SetDrawBuffer();
 
-    gfx_ZeroScreen();   // Gray border
+    // Partially erases background and draws Snorlax
+
+    gfx_SetColor(3);
+    gfx_FillRectangle_NoClip(52, 45, 216, 120);
 
     // How fast you pressed "2nd"
 
     if (speed < 87) {
-        gfx_ScaledSprite_NoClip(ok, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(ok, 16, 168, 3, 3);
         score++;
     } else if (speed > 207) {
-        gfx_ScaledSprite_NoClip(great, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(great, 208, 168, 3, 3);
         score += 10;
     } else {
-        gfx_ScaledSprite_NoClip(good, 16, 24, 3, 3);
+        gfx_ScaledSprite_NoClip(good, 88, 168, 3, 3);
         score += 5;
     }
 
+    // Snorlax eating
+
+    gfx_ScaledSprite_NoClip(eatFood, 85, 74, 3, 3);
+
     // Displaying the score
+
+    gfx_ScaledSprite_NoClip(topLeft, 16, 24, 3, 3);
+    gfx_ScaledSprite_NoClip(topRight, 226, 24, 3, 3);
 
     gfx_SetTextXY(25, 34);
     gfx_PrintInt(score, 3);
