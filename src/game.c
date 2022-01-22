@@ -72,6 +72,9 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
         case 3:
             gfx_TransparentSprite(pichu1, x + 21, y);
             break;
+        case 4:
+            gfx_TransparentSprite(secret, x + 28, y + 27);
+            break;
         default:
             break;
     }

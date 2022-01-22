@@ -35,6 +35,10 @@ static void game(void) {
     int16_t score = 0;
     int16_t yum = 0;
     int16_t arrowX = 280;
+    uint8_t food = 5;
+
+    rtc_Enable(RTC_SEC_INT);
+    srand(rtc_Time());
 
     timer_Disable(1);
 
@@ -43,14 +47,18 @@ static void game(void) {
 
     // Draws the first frame of the game
 
-    draw(0, yum, score, 5, 0, 0, 0);
+    draw(0, yum, score, food, 0, 0, 0);
 
     timer_Enable(1, TIMER_32K, TIMER_0INT, TIMER_DOWN);
 
     while (!kb_IsDown(kb_KeyClear)) {
         kb_Scan();
 
-        uint8_t food = randInt(0, 3);
+        if (score == 174 && highScores[2] > 312 && highScores[2] < 327) {
+            food = 4;
+        } else {
+            food = randInt(0, 3);
+        }
 
         for (int8_t y = -60; y <= 60; y += 10) {              //Falling food loop
             kb_Scan();
@@ -92,7 +100,7 @@ static void game(void) {
 
         // Scoring system
 
-        if (food < 3) {
+        if (food != 3) {
             if (kb_IsDown(kb_Key2nd)) {
                 score = eat(arrowX, score, yum);
                 yum++;
