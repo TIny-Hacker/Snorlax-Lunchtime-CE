@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+
 uint8_t draw(uint8_t, int16_t, int16_t, uint8_t, int8_t, int16_t, int16_t);
 
 int16_t eat(int16_t, int16_t, int16_t);

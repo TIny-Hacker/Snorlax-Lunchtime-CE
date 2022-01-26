@@ -4,7 +4,6 @@
 
 #include <tice.h>
 #include <graphx.h>
-#include <stdint.h>
 #include <keypadc.h>
 #include <stdbool.h>
 

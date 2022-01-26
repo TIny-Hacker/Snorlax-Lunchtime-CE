@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+
 extern int16_t highScores[5];
 
 #ifdef __cplusplus
