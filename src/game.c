@@ -176,31 +176,23 @@ void youLose(int16_t score) {
 
     while (kb_AnyKey());
 
-    // I'm stupid so this is how I took care of bumping high scores down
+    // Highscore code provided by RoccoLox Programs
 
-    if (score > highScores[0]) {
-        highScores[4] = highScores[3];
-        highScores[3] = highScores[2];
-        highScores[2] = highScores[1];
-        highScores[1] = highScores[0];
-        highScores[0] = score;
+    int8_t offset;
+
+    // Check to see if there's a new highscore
+    for (offset = 0; offset < 4; offset++) {
+        if (highScores[offset] < score) break;
+    }
+
+    if (offset < 4) {   // If there's a new highscore
+        for (uint8_t listOffset = 4; listOffset > offset; listOffset--) {
+            highScores[listOffset] = highScores[listOffset - 1];    // Move all of the lower highscores down
+        }
+
+        highScores[offset] = score;
         newBest(score);
-    } else if (score > highScores[1]) {
-        highScores[4] = highScores[3];
-        highScores[3] = highScores[2];
-        highScores[2] = highScores[1];
-        highScores[1] = score;
-        newBest(score);
-    } else if (score > highScores[2]) {
-        highScores[4] = highScores[3];
-        highScores[3] = highScores[2];
-        highScores[2] = score;
-        newBest(score);
-    } else if (score > highScores[3]) {
-        highScores[4] = highScores[3];
-        highScores[3] = score;
-        newBest(score);
-    } else if (score > highScores[4]) {
+    } else if (highScores[4] < score) {
         highScores[4] = score;
         newBest(score);
     }
