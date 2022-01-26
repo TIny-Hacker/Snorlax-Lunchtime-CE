@@ -35,6 +35,7 @@ static void game(void) {
     int16_t yum = 0;
     int16_t arrowX = 280;
     uint8_t food = 5;
+    uint8_t difficulty = 10;
 
     rtc_Enable(RTC_SEC_INT);
     srand(rtc_Time());
@@ -59,7 +60,24 @@ static void game(void) {
             food = randInt(0, 3);
         }
 
-        for (int8_t y = -60; y <= 60; y += 10) {              //Falling food loop
+        switch (yum) {
+            case 12:
+                difficulty = yum;
+                break;
+            case 15:
+                difficulty = yum;
+                break;
+            case 20:
+                difficulty = yum;
+                break;
+            case 30:
+                difficulty = yum;
+                break;
+            default:
+                break;
+        }
+
+        for (int8_t y = -60; y <= 60; y += difficulty) {              //Falling food loop
             kb_Scan();
 
             if (kb_IsDown(kb_KeyClear)) {
