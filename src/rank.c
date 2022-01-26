@@ -1,12 +1,12 @@
+#include "rank.h"
+#include "gfx/gfx.h"
+#include "globals.h"
+
 #include <tice.h>
 #include <graphx.h>
 #include <stdint.h>
 #include <keypadc.h>
 #include <stdbool.h>
-
-#include "gfx/gfx.h"
-#include "rank.h"
-#include "globals.h"
 
 void rankMenu(void) {
     gfx_SetDrawBuffer();

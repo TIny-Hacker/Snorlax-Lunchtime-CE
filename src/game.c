@@ -1,12 +1,12 @@
+#include "game.h"
+#include "gfx/gfx.h"
+#include "globals.h"
+
 #include <tice.h>
 #include <graphx.h>
 #include <stdint.h>
 #include <keypadc.h>
 #include <stdbool.h>
-
-#include "gfx/gfx.h"
-#include "game.h"
-#include "globals.h"
 
 #define TIMER_FREQ 32768
 #define ONE_SECOND (TIMER_FREQ / 1)
