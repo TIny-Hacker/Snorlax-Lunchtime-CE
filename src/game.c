@@ -12,7 +12,7 @@
 #define HALF_SECOND (TIMER_FREQ / 2)
 #define QRTR_SECOND (TIMER_FREQ / 4)
 
-static void newBest(int16_t score) {
+static void newBest(int score) {
     gfx_ScaledSprite_NoClip(newHighScore, 16, 24, 3, 3);
     gfx_SetTextXY(96, 118);
     gfx_SetTextScale(4, 4);
@@ -24,7 +24,7 @@ static void newBest(int16_t score) {
     }
 }
 
-uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, int8_t y, int16_t x, int16_t arrowX) {
+uint8_t draw(uint8_t idleAnimation, int yum, int score, uint8_t food, int8_t y, int x, int arrowX) {
     gfx_SetDrawBuffer();
 
     gfx_ZeroScreen();   // Gray border
@@ -99,7 +99,7 @@ uint8_t draw(uint8_t idleAnimation, int16_t yum, int16_t score, uint8_t food, in
     return idleAnimation;   // In some cases it is necessary to change the frame of the animation
 }
 
-int16_t eat(int16_t speed, int16_t score, int16_t yum) {
+int eat(int speed, int score, int yum) {
     gfx_SetDrawBuffer();
 
     // Partially erases background and draws Snorlax
@@ -143,7 +143,7 @@ int16_t eat(int16_t speed, int16_t score, int16_t yum) {
     return score;
 }
 
-void youLose(int16_t score) {
+void youLose(int score) {
     gfx_SetDrawBuffer();
 
     gfx_ZeroScreen();   // Gray border that is everywhere

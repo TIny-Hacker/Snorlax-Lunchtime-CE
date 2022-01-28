@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 
-extern int16_t highScores[5];
+extern int highScores[5];
 
 #ifdef __cplusplus
 }

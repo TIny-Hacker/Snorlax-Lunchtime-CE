@@ -14,7 +14,7 @@
 #define HALF_SECOND (TIMER_FREQ / 2)
 #define QRTR_SECOND (TIMER_FREQ / 4)
 
-int16_t highScores[5] = {0, 0, 0, 0, 0};
+int highScores[5] = {0, 0, 0, 0, 0};
 
 static void cursor(uint8_t y) {
     gfx_SetDrawBuffer();
@@ -31,9 +31,9 @@ static void cursor(uint8_t y) {
 
 static void game(void) {
     uint8_t idleAnimation = 1;
-    int16_t score = 0;
-    int16_t yum = 0;
-    int16_t arrowX = 280;
+    int score = 0;
+    int yum = 0;
+    int arrowX = 280;
     uint8_t food = 5;
     uint8_t difficulty = 10;
 
@@ -156,7 +156,7 @@ int main(void) {
     ti_var_t slot = ti_Open("SLXHIGH", "r");    // App variable with the High Scores
 
     if (slot) {
-        ti_Read(&highScores, 10, 1, slot);
+        ti_Read(&highScores, 15, 1, slot);
     }
 
     gfx_Begin();
@@ -227,7 +227,7 @@ int main(void) {
 
     slot = ti_Open("SLXHIGH", "w+");
 
-    ti_Write(&highScores, 10, 1, slot);
+    ti_Write(&highScores, 15, 1, slot);
 
     ti_SetArchiveStatus(true, slot);
 
