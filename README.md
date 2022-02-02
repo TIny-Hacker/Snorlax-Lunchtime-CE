@@ -35,10 +35,10 @@ There is also an easter egg. See if you can find it!
 
 ### Credits
 
-Thanks to RoccoLox Programs for being an awesome bro and teaching me most of the 
+Thanks to [RoccoLox Programs](https://github.com/roccoloxprograms/) for being an awesome bro and teaching me most of the 
 C I used in this program, and putting up with all my feeble-brained mistakes.
 
-Also thank you to King Dub Dub, MateoConLechuga, and darkwater4123 for the kind words
+Also thank you to [King Dub Dub](https://github.com/kingdubdub/), [MateoConLechuga](https://github.com/mateoconlechuga/), and [darkwater4213](https://github.com/darkwater4213) for the kind words
 and programming tips.
 
 ---
