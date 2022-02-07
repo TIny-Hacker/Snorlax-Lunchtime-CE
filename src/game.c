@@ -1,6 +1,5 @@
 #include "game.h"
 #include "gfx/gfx.h"
-#include "globals.h"
 
 #include <tice.h>
 #include <graphx.h>
@@ -143,7 +142,7 @@ int eat(int speed, int score, int yum) {
     return score;
 }
 
-void youLose(int score) {
+void youLose(int score, int *highScores) {
     gfx_SetDrawBuffer();
 
     gfx_ZeroScreen();   // Gray border that is everywhere

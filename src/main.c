@@ -1,7 +1,6 @@
 #include "gfx/gfx.h"
 #include "game.h"
 #include "rank.h"
-#include "globals.h"
 
 #include <tice.h>
 #include <graphx.h>
@@ -13,8 +12,6 @@
 #define ONE_SECOND (TIMER_FREQ / 1)
 #define HALF_SECOND (TIMER_FREQ / 2)
 #define QRTR_SECOND (TIMER_FREQ / 4)
-
-int highScores[5] = {0, 0, 0, 0, 0};
 
 static void cursor(uint8_t y) {
     gfx_SetDrawBuffer();
@@ -29,7 +26,7 @@ static void cursor(uint8_t y) {
     gfx_SetDrawScreen();
 }
 
-static void game(void) {
+static void game(int *highScores) {
     uint8_t idleAnimation = 1;
     int score = 0;
     int yum = 0;
@@ -122,13 +119,13 @@ static void game(void) {
                 score = eat(arrowX, score, yum);
                 yum++;
             } else {
-                youLose(score);
+                youLose(score, highScores);
                 while (kb_AnyKey());
                 return;
             }
         } else {
             if (kb_IsDown(kb_Key2nd)) {
-                youLose(score);
+                youLose(score, highScores);
                 while (kb_AnyKey());
                 return;
             }
@@ -136,13 +133,13 @@ static void game(void) {
     }
 }
 
-static void rank(void) {
+static void rank(int *highScores) {
     while (!kb_IsDown(kb_KeyClear) && !kb_IsDown(kb_KeyAlpha)) {
         // This determines what menu you should be seeing
         
         if (!kb_IsDown(kb_KeyRight)) {
             while (kb_AnyKey());
-            rankMenu();
+            rankMenu(highScores);
         } else {
             while (kb_AnyKey());
             helpMenu();
@@ -151,6 +148,7 @@ static void rank(void) {
 }
 
 int main(void) {
+    static int highScores[5] = {0, 0, 0, 0, 0};
     uint8_t cursorY = 124;
 
     ti_var_t slot = ti_Open("SLXHIGH", "r");    // App variable with the High Scores
@@ -210,9 +208,9 @@ int main(void) {
 
         if (kb_IsDown(kb_Key2nd) || kb_IsDown(kb_KeyEnter)) {
             if (cursorY >= 144) {
-                rank();
+                rank(highScores);
             } else {
-                game();
+                game(highScores);
             }
         }
 

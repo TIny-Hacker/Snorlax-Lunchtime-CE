@@ -1,13 +1,12 @@
 #include "rank.h"
 #include "gfx/gfx.h"
-#include "globals.h"
 
 #include <tice.h>
 #include <graphx.h>
 #include <keypadc.h>
 #include <stdbool.h>
 
-void rankMenu(void) {
+void rankMenu(int *highScores) {
     gfx_SetDrawBuffer();
 
     gfx_ZeroScreen();   // This draws the gray border around the screen

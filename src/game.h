@@ -11,7 +11,7 @@ uint8_t draw(uint8_t, int,  int,  uint8_t, int8_t, int,  int);
 
 int eat(int,  int,  int);
 
-void youLose(int);
+void youLose(int, int *);
 
 #ifdef __cplusplus
 }

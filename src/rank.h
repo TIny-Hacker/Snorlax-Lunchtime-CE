@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-void rankMenu(void);
+void rankMenu(int *highScores);
 
 void helpMenu(void);
 
