@@ -17,13 +17,13 @@ TI-84 Plus CE.
 
 ### How to play
 
-To navigate the menu, use [2ND] and the [UP] and [DOWN] keys and [ALPHA] to return.
+To navigate the menu, use <kbd>2nd</kbd> and the <kbd>↑</kbd> and <kbd>↓</kbd> keys and <kbd>alpha</kbd> to return.
 
-The rank menu will show you your top five high scores. If you press the [->] button
+The rank menu will show you your top five high scores. If you press the <kbd>→</kbd> button
 in the rank menu, it will take you to a help menu. 
 
 The goal of the game is to eat the food as fast as possible. Food will
-fall onto Snorlax's plate from out of the sky, and you must press [2ND]
+fall onto Snorlax's plate from out of the sky, and you must press <kbd>2nd</kbd>
 before the timer runs out. The faster you eat the food, the higher your
 score will be. Occasionally, however, a Pichu will fall onto Snorlax's plate.
 Don't ask how it got there, but you can't eat it. If you try to eat the Pichu,
